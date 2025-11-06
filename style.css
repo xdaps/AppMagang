@@ -1,0 +1,171 @@
+:root{
+  /* Palet dari logo */
+  --brand:#75b762;   /* hijau */
+  --brand2:#5686b8;  /* biru */
+  --ink:#0f172a; --muted:#64748b; --bg:#f6fbff; --card:#ffffff; --bd:#e5e7eb;
+  --radius:18px; --radius-sm:12px; --shadow:0 14px 36px rgba(15,23,42,.09);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+html{scroll-behavior:smooth}
+body{
+  margin:0; font-family:ui-sans-serif,-apple-system,Segoe UI,Roboto,Arial;
+  color:var(--ink); background:var(--bg); line-height:1.65;
+}
+img{max-width:100%; display:block}
+a{color:inherit; text-decoration:none}
+a:focus-visible{outline:3px solid color-mix(in oklab, var(--brand2), white 18%); outline-offset:3px}
+.container{max-width:1180px; margin-inline:auto; padding:0 20px}
+
+/* ===== Header (single navbar) ===== */
+.site-header{
+  position:sticky; top:0; z-index:50;
+  backdrop-filter:saturate(1.4) blur(8px);
+  background:color-mix(in oklab, #fff, transparent 8%);
+  border-bottom:1px solid var(--bd);
+}
+.head{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:10px 0}
+.brand{display:flex; align-items:center; gap:.9rem; font-weight:800}
+.logo-img{height:42px; width:auto}
+.brand small{display:block; color:var(--muted); font-weight:600; line-height:1.2}
+.nav{display:flex; gap:8px; flex-wrap:wrap}
+.nav a{
+  padding:10px 12px; border-radius:999px; color:var(--muted); font-weight:600; font-size:.95rem;
+  transition:background .15s ease, color .15s ease, transform .15s ease;
+}
+.nav a:hover{background:#f1f5f9; color:var(--ink); transform:translateY(-1px)}
+.hamb{display:none}
+/* 1. Gaya Dasar Tombol (Kelas 'btn') */
+.nav .btn {
+    /* Membuat elemen berperilaku seperti blok untuk bisa diberi padding */
+    display: inline-block; 
+    
+    /* Ruang di dalam tombol */
+    padding: 8px 15px; 
+    
+    /* Sudut melengkung */
+    border-radius: 6px; 
+    
+    /* Jarak dari tautan menu 'Magang' */
+    margin-left: 15px; 
+    
+    /* Menghilangkan garis bawah tautan */
+    text-decoration: none; 
+    
+    /* Teks tebal */
+    font-weight: 700; 
+    
+    /* Mencegah teks putus baris */
+    white-space: nowrap; 
+}
+
+/* 2. Gaya Spesifik Tombol Login (Kelas 'login-btn') */
+.nav .login-btn {
+    /* Warna latar belakang merah BPJS */
+    background-color: #0026e4; 
+    
+    /* Warna teks putih */
+    color: white; 
+    
+    /* Garis tepi dengan warna yang sama */
+    border: 1px solid #0026e4; 
+    
+    /* Efek transisi saat mouse diarahkan */
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+/* 3. Efek Hover */
+.nav .login-btn:hover {
+    background-color: #75b762; /* Sedikit lebih gelap saat di-hover */
+    border-color: #75b762;
+}
+
+/* 4. Penyesuaian Responsif (Penting untuk tampilan mobile) */
+@media (max-width: 768px) {
+    /* Saat menu dibuka, atur tombol login agar mengambil lebar penuh dan memiliki margin yang jelas */
+    .nav.open .login-btn {
+        display: block;
+        text-align: center;
+        margin: 10px 0; /* Margin atas/bawah agar tidak menempel */
+    }
+}
+@media (max-width:860px){
+  .head{flex-wrap:wrap}
+  .hamb{display:inline-flex; align-items:center; gap:.4rem; padding:8px 12px; border-radius:999px; border:1px solid var(--bd); background:var(--card); font-weight:700}
+  .nav{display:none; width:100%}
+  .nav.open{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; padding-bottom:10px}
+  .nav.open a{border:1px solid var(--bd); border-radius:12px; background:#fff}
+}
+
+/* ===== Hero ===== */
+.hero{
+  position:relative; isolation:isolate;
+  background:
+    radial-gradient(1200px 420px at 85% -60%, color-mix(in oklab, var(--brand2), rgb(85, 166, 228) 72%), transparent),
+    radial-gradient(1000px 420px at -10% -70%, color-mix(in oklab, var(--brand), rgb(78, 204, 112) 72%), transparent),
+    linear-gradient(180deg, #dee06c, #b0d6f4 60%, #beffd1);
+  border-bottom:1px solid var(--bd);
+}
+.hero .container{padding:70px 0 60px}
+.eyebrow{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px;
+  background:rgba(117,183,98,.14); color:#0e4b1d; font-weight:800; border:1px solid #cfeccc}
+.hero h1{margin:14px 0 8px; font-size:clamp(1.7rem,3.8vw,2.9rem); line-height:1.12}
+.lead{color:var(--muted); margin:0 0 20px; max-width:820px}
+.actions{display:flex; gap:12px; flex-wrap:wrap}
+.btn{
+  display:inline-flex; align-items:center; gap:.6rem;
+  padding:12px 16px; border-radius:999px; font-weight:800; border:1px solid transparent;
+  transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.btn.primary{background:linear-gradient(135deg, var(--brand), var(--brand2)); color:#fff; box-shadow:var(--shadow)}
+.btn.ghost{background:#fff; border-color:var(--bd)}
+.btn:hover{transform:translateY(-2px)}
+.hero-wave{
+  position:absolute; inset:auto 0 -1px 0; height:70px; z-index:-1;
+  background:conic-gradient(from 180deg at 50% 0%, #eafaf1, #e9f7fb, #f7fafc);
+  -webkit-mask:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 140" preserveAspectRatio="none"><path d="M0,96L60,101.3C120,107,240,117,360,117.3C480,117,600,107,720,96C840,85,960,75,1080,85.3C1200,96,1320,128,1380,144L1440,160L1440,0L0,0Z" fill="%23000"/></svg>') center/100% 100% no-repeat;
+          mask:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 140" preserveAspectRatio="none"><path d="M0,96L60,101.3C120,107,240,117,360,117.3C480,117,600,107,720,96C840,85,960,75,1080,85.3C1200,96,1320,128,1380,144L1440,160L1440,0L0,0Z" fill="%23000"/></svg>') center/100% 100% no-repeat;
+}
+
+/* ===== Sections ===== */
+.section{padding:38px 0}
+.section h2{
+  margin:0 0 16px; font-size:clamp(1.2rem,2.5vw,1.6rem);
+  display:flex; align-items:center; gap:10px;
+}
+.section h2::before{
+  content:""; width:12px; height:12px; border-radius:3px;
+  background:linear-gradient(135deg,var(--brand),var(--brand2));
+  box-shadow:0 0 0 6px color-mix(in oklab, var(--brand), white 82%);
+}
+.muted{color:var(--muted)}
+.grid{display:grid; gap:18px}
+.grid.five{grid-template-columns:repeat(5,1fr)}
+.grid.three{grid-template-columns:repeat(3,1fr)}
+.grid.two{grid-template-columns:1fr 1fr}
+@media (max-width:1024px){ .grid.five{grid-template-columns:repeat(3,1fr)} }
+@media (max-width:860px){ .grid.three{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:720px){ .grid.five,.grid.three,.grid.two{grid-template-columns:1fr} }
+
+/* ===== Cards ===== */
+.card{
+  background:var(--card); border:1px solid var(--bd); border-radius:var(--radius);
+  padding:18px; box-shadow:var(--shadow);
+  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.card:hover{transform:translateY(-4px); box-shadow:0 16px 42px rgba(15,23,42,.12); border-color:#dbeafe}
+.card h3{margin:.2rem 0 .3rem; font-size:1.06rem}
+.card p{margin:0; color:var(--muted)}
+.icon{
+  width:48px; height:48px; display:grid; place-items:center; border-radius:14px;
+  background:linear-gradient(135deg,var(--brand),var(--brand2)); color:white; font-size:22px; box-shadow:var(--shadow)
+}
+
+/* ===== Footer ===== */
+.site-footer{border-top:1px solid var(--bd); background:#fff}
+.foot{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:16px 0; color:var(--muted)}
+.foot-nav{display:flex; gap:12px}
+
+/* Helpers */
+.row{display:flex; gap:12px; flex-wrap:wrap}
+.list{margin:.5rem 0 0; padding-left:18px; color:var(--muted)}
