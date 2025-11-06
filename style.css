@@ -15,7 +15,12 @@ body{
 img{max-width:100%; display:block}
 a{color:inherit; text-decoration:none}
 a:focus-visible{outline:3px solid color-mix(in oklab, var(--brand2), white 18%); outline-offset:3px}
-.container{max-width:1180px; margin-inline:auto; padding:0 20px}
+.container {
+  max-width: 1200px;
+  width: 100%;
+  padding: 15px;
+}
+
 
 /* ===== Header (single navbar) ===== */
 .site-header{
@@ -82,12 +87,22 @@ a:focus-visible{outline:3px solid color-mix(in oklab, var(--brand2), white 18%);
 
 /* 4. Penyesuaian Responsif (Penting untuk tampilan mobile) */
 @media (max-width: 768px) {
-    /* Saat menu dibuka, atur tombol login agar mengambil lebar penuh dan memiliki margin yang jelas */
-    .nav.open .login-btn {
-        display: block;
-        text-align: center;
-        margin: 10px 0; /* Margin atas/bawah agar tidak menempel */
-    }
+  .container {
+    padding: 10px;
+  }
+
+  .grid {
+    display: block; /* jika tadinya pakai grid 3 kolom */
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
 }
 @media (max-width:860px){
   .head{flex-wrap:wrap}
@@ -169,3 +184,4 @@ a:focus-visible{outline:3px solid color-mix(in oklab, var(--brand2), white 18%);
 /* Helpers */
 .row{display:flex; gap:12px; flex-wrap:wrap}
 .list{margin:.5rem 0 0; padding-left:18px; color:var(--muted)}
+
