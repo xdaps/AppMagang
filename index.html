@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>BPJS Ketenagakerjaan • Kantor Cabang Yogyakarta</title>
   <meta name="description" content="Beranda BPJS Ketenagakerjaan" />
   <!-- Tarik CSS eksternal -->
@@ -78,21 +78,23 @@
     </section>
 
     <section id="informasi" class="section">
-      <div class="container">
-        <h2>Informasi</h2>
-        <div class="grid three">
-          <div class="card"><h3></h3><p class="muted">Jika Magang bersama teman-teman mohon ditulis dengan teman nya sekalian dan dikoordinasikan dengan teman-teman.</p></div>
-          <div class="card"><h3></h3><p class="muted">Diprioritaskan magang Minimal 3 Bulan.</p></div>
-          <div class="card"><h3></h3><p class="muted">Jam Masuk magang Pkl 07:45 - 17:00.</p></div>
-           <div class="card"><h3></h3><p class="muted">Mengikuti kegiatan olahraga yang sudah ditentukan oleh pihak BPJS Ketenagakerjaan.</p></div>
-            <div class="card"><h3></h3><p class="muted">Diwajibkan membawa KTP guna mengikuti kepesertaan Bukan Penerima Upah (BPU) BPJS Ketenagakerjaan Yogyakarta dengan iuran Rp.16.800,- (JKK-JKM).</p></div>
-             <div class="card"><h3></h3><p class="muted">Diwajibkan Memakai Jas Almamater dan laptop sewaktu diterima magang.</p></div>
-               <div class="card"><h3></h3><p class="muted">Mengenal Program BPJS Ketenagakerjaan dan bersedia menginformasikan kepada rekan, saudara/ Tetangga.</p></div>
-                <div class="card"><h3></h3><p class="muted">Membuat Video/Instagram/Tiktok tentang Program BPJS Ketenagakerjaan dan di Upload di link berikut Paling Lambat 1 Minggu setelah pendaftaran Pkl 12:00 : https://drive.google.com/drive/u/2/folders/1ydMuBXbj78XXuuZo66eGlPNQ_FlQRn1k.</p></div>
-                 <div class="card"><h3></h3><p class="muted">Jika magang tidak diterima di Cabang Induk bersedia ditempatkan di KCP dengan Alamat berikut : Kacab Yogya : Jl. Urip Sumoharjo No 106 Yogyakarta, KCP Sleman, KCP Bantul, KCP Kulon Progo, dan KCP Gunung Kidul.</p></div>
-        </div>
-      </div>
-    </section>
+  <div class="container">
+    <h2>Informasi</h2>
+    <div class="info-box">
+      <div class="info-item">Jika Magang bersama teman-teman mohon ditulis dengan teman nya sekalian dan dikoordinasikan dengan teman-teman.</div>
+      <div class="info-item">Diprioritaskan magang Minimal 3 Bulan.</div>
+      <div class="info-item">Jam Masuk magang Pkl 07:45 - 17:00.</div>
+      <div class="info-item">Mengikuti kegiatan olahraga yang sudah ditentukan oleh pihak BPJS Ketenagakerjaan.</div>
+      <div class="info-item">Diwajibkan membawa KTP guna mengikuti kepesertaan Bukan Penerima Upah (BPU) BPJS Ketenagakerjaan Yogyakarta dengan iuran Rp.16.800,- (JKK-JKM).</div>
+      <div class="info-item">Diwajibkan Memakai Jas Almamater dan laptop sewaktu diterima magang.</div>
+      <div class="info-item">Mengenal Program BPJS Ketenagakerjaan dan bersedia menginformasikan kepada rekan, saudara/ Tetangga.</div>
+      <div class="info-item">Membuat Video/Instagram/Tiktok tentang Program BPJS Ketenagakerjaan dan di Upload di link berikut Paling Lambat 1 Minggu setelah pendaftaran Pkl 12:00 : https://drive.google.com/drive/u/2/folders/1ydMuBXbj78XXuuZo66eGlPNQ_FlQRn1k.</div>
+      <div class="info-item">Jika magang tidak diterima di Cabang Induk bersedia ditempatkan di KCP dengan Alamat berikut : Kacab Yogya : Jl. Urip Sumoharjo No 106 Yogyakarta, KCP Sleman, KCP Bantul, KCP Kulon Progo, dan KCP Gunung Kidul.</div>
+    </div>
+  </div>
+</section>
+
+
 
     <section id="kontak" class="section">
       <div class="container">
@@ -108,17 +110,83 @@
       </div>
     </section>
 
-    <section id="alamat" class="section">
-      <div class="container">
-        <h2>Alamat</h2>
-        <div class="card">
-          <p class="muted">Jl. Urip Sumoharjo No.106, Klitren, Kec. Gondokusuman, Kota Yogyakarta, Daerah Istimewa Yogyakarta 55222</p>
-          <div class="row">
-            <a class="btn ghost" href="https://maps.app.goo.gl/zxp1KBfZ1Fn8maFU9" target="_blank" rel="noopener">📍 Buka di Google Maps</a>
-          </div>
+<section id="alamat" class="section">
+  <div class="container">
+    <h2>Alamat</h2>
+
+    <!-- Bungkus semua card dalam grid -->
+    <div class="grid two">
+
+      <!-- Alamat Cabang Induk -->
+      <div class="card">
+        <h3>Cabang Induk Yogyakarta</h3>
+        <p class="muted">
+          Jl. Urip Sumoharjo No.106, Klitren, Kec. Gondokusuman, Kota Yogyakarta, Daerah Istimewa Yogyakarta 55222
+        </p>
+        <div class="row">
+          <a class="btn ghost" href="https://maps.app.goo.gl/zxp1KBfZ1Fn8maFU9" target="_blank" rel="noopener">
+            📍 Buka di Google Maps
+          </a>
         </div>
       </div>
-    </section>
+
+      <!-- Alamat KCP Sleman -->
+      <div class="card">
+        <h3>KCP Sleman</h3>
+        <p class="muted">
+          Ruko Tridadi Square No. 3 & 4, Jl. Magelang, Tridadi, Kec. Sleman, Daerah Istimewa Yogyakarta 55285
+        </p>
+        <div class="row">
+          <a class="btn ghost" href="https://maps.app.goo.gl/DSQz5def4HaifLX97" target="_blank" rel="noopener">
+            📍 Buka di Google Maps
+          </a>
+        </div>
+      </div>
+
+      <!-- Alamat KCP Bantul -->
+      <div class="card">
+        <h3>KCP Bantul</h3>
+        <p class="muted">
+          Jl. Ringroad Selatan No.Rt 07, Gonjen, Tamantirto, Kec. Kasihan, Kabupaten Bantul, Daerah Istimewa Yogyakarta 55184
+        </p>
+        <div class="row">
+          <a class="btn ghost" href="https://maps.app.goo.gl/KNraX8KHDd8d7chCA" target="_blank" rel="noopener">
+            📍 Buka di Google Maps
+          </a>
+        </div>
+      </div>
+
+      <!-- Alamat KCP Kulon Progo -->
+      <div class="card">
+        <h3>KCP Kulon Progo</h3>
+        <p class="muted">
+          45X7+9J3, Terbah, Pengasih, Kec. Pengasih, Kabupaten Kulon Progo, Daerah Istimewa Yogyakarta 55652
+        </p>
+        <div class="row">
+          <a class="btn ghost" href="https://maps.app.goo.gl/j89oxdQRqGwjH4Du5" target="_blank" rel="noopener">
+            📍 Buka di Google Maps
+          </a>
+        </div>
+      </div>
+
+      <!-- Alamat KCP Gunungkidul -->
+      <div class="card">
+        <h3>KCP Gunungkidul</h3>
+        <p class="muted">
+          JBank Btn (Kepek), Jl. KH Agus Salim No.97B, Ledoksari, Kepek, Kec. Wonosari, Kabupaten Gunungkidul, Daerah Istimewa Yogyakarta 55813
+        </p>
+        <div class="row">
+          <a class="btn ghost" href="https://maps.app.goo.gl/giN4rEP55qggMAbj6" target="_blank" rel="noopener">
+            📍 Buka di Google Maps
+          </a>
+        </div>
+      </div>
+
+    </div> <!-- Tutup grid -->
+  </div> <!-- Tutup container -->
+</section>
+
+
 
     <!-- Placeholder agar menu lengkap -->
 <section id="Magang" class="section">
@@ -153,4 +221,3 @@
   </script>
 </body>
 </html>
-
