@@ -1,167 +1,236 @@
-<?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-include 'db_config.php';
-
-// Cek login
-if (!isset($_SESSION['user'])) {
-    echo "<script>alert('Silakan login terlebih dahulu!'); window.location='login.php';</script>";
-    exit;
-}
-
-// Tangkap keyword pencarian (jika ada)
-$search = isset($_GET['search']) ? trim($_GET['search']) : '';
-
-// Query ambil data peserta dengan filter pencarian
-if ($search) {
-    $stmt = $pdo->prepare("SELECT * FROM peserta_magang 
-                           WHERE nama LIKE :search 
-                           OR email LIKE :search 
-                           OR universitas LIKE :search 
-                           OR jurusan LIKE :search 
-                           ORDER BY tanggal_daftar DESC");
-    $stmt->execute(['search' => "%$search%"]);
-} else {
-    $stmt = $pdo->prepare("SELECT * FROM peserta_magang ORDER BY tanggal_daftar DESC");
-    $stmt->execute();
-}
-
-$peserta = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Dashboard Admin - Peserta Magang</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BPJS Ketenagakerjaan • Kantor Cabang Yogyakarta</title>
+  <meta name="description" content="Beranda BPJS Ketenagakerjaan" />
+  <!-- Tarik CSS eksternal -->
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-light">
+<body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-dark bg-primary shadow">
-  <div class="container-fluid d-flex justify-content-between align-items-center">
-    <a href="index.html" class="navbar-brand mb-0 h1 fw-semibold text-white text-decoration-none">Dashboard Admin</a>
-    <div>
-      <span class="text-white me-3">👤 <?= htmlspecialchars($_SESSION['user']) ?></span>
-      <a href="logout.php" class="btn btn-danger btn-sm">Logout</a>
+  <!-- ===== Header (single navbar) ===== -->
+  <header class="site-header">
+    <div class="container head">
+   <img class="logo-img" src="logo.jpg" alt="BPJS Ketenagakerjaan — Kantor Cabang Yogyakarta" style="height:64px;width:auto;">
+
+
+      <button class="hamb" id="hamb" aria-expanded="false" aria-controls="mainnav">☰ Menu</button>
+      <nav id="mainnav" class="nav" aria-label="Navigasi utama">
+        <a href="#program">Program</a>
+        <a href="#visi-misi">Visi &amp; Misi</a>
+        <a href="#informasi">Informasi</a>
+        <a href="#kontak">Kontak</a>
+        <a href="#alamat">Alamat</a>
+        <a href="#magang">Magang</a>
+
+        <a href="login.php" class="btn login-btn">Login</a>
+
+      </nav>
     </div>
-  </div>
-</nav>
+  </header>
 
-<div class="container mt-4">
-  <!-- Notifikasi Update -->
-  <?php if (isset($_GET['msg']) && $_GET['msg'] == 'updated'): ?>
-    <div class="alert alert-success text-center">
-      ✅ Status peserta berhasil diperbarui!
-    </div>
-  <?php endif; ?>
+  <main>
+    <!-- ===== Hero ===== -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container">
+        <h1 id="hero-title">Permohonan Magang BPJS Ketenagakerjaan Yogyakarta</h1>
+      </div>
+      <div class="hero-wave" aria-hidden="true"></div>
+    </section>
 
-  <div class="d-flex justify-content-between align-items-center flex-wrap mb-3">
-    <h3 class="fw-bold text-primary mb-2">Daftar Peserta Magang</h3>
+    <!-- ===== Program ===== -->
+    <section id="program" class="section">
+      <div class="container">
+        <h2>Program</h2>
+        <div class="grid five">
+          <div class="card"><div class="icon">J</div><h3>JKK</h3><p>Kecelakaan & penyakit akibat kerja.</p></div>
+          <div class="card"><div class="icon">J</div><h3>JKM</h3><p>Santunan untuk ahli waris.</p></div>
+          <div class="card"><div class="icon">J</div><h3>JHT</h3><p>Tabungan jangka panjang.</p></div>
+          <div class="card"><div class="icon"></div><h3>JP</h3><p>Manfaat pensiun berkala.</p></div>
+          <div class="card"><div class="icon"></div><h3>JKP</h3><p>Dukungan saat kehilangan kerja.</p></div>
+        </div>
+      </div>
+    </section>
 
-    <!-- Form Pencarian -->
-    <form method="get" class="d-flex gap-2 align-items-center mb-2 flex-wrap" style="flex:1;">
-  <input 
-    type="text" 
-    name="search" 
-    class="form-control form-control-lg shadow-sm" 
-    placeholder="🔍 Cari peserta " 
-    value="<?= htmlspecialchars($search) ?>" 
-    style="max-width: 350px; flex:1; border-radius: 1px;"
-  >
-  <button class="btn btn-primary btn-lg px-4" type="submit" style="border-radius:8px;">
-    Cari
-  </button>
-</form>
+   
 
+    <!-- ===== Informasi umum (anchor menu) ===== -->
+    <section id="visi-misi" class="section">
+      <div class="container">
+        <h2>Visi &amp; Misi</h2>
+        <div class="grid two">
+          <div class="card">
+            <h3>Visi</h3>
+            <p class="muted">Mewujudkan Jaminan Sosial Ketenagakerjaan yang terpercaya, Berkelanjutan dan Menyejahterakan Seluruh Pekerja Indonesia.</p>
+          </div>
+          <div class="card">
+            <h3>Misi</h3>
+            <ul class="list">
+              <li>Melindungi, Melayani & Menyejahterakan Pekerja dan Keluarga.</li>
+              <li>Memberikan rasa Aman, Mudah & Nyaman untuk Meningkatkan Produktivitas dan Daya Saing Peserta.</li>
+              <li>Memberikan Kontribusi dalam Pembangunan dan Perekonomian Bangsa dengan Tata Kelola Baik.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <!-- Tombol Export Excel -->
-    <a href="export_excel.php" class="btn btn-success btn-sm">📤 Export ke Excel</a>
-  </div>
+    <section id="informasi" class="section">
+  <div class="container">
+    <h2>Informasi</h2>
+    <div class="info-box">
+      <div class="info-item">Jika Magang bersama teman-teman mohon ditulis dengan teman nya sekalian dan dikoordinasikan dengan teman-teman.</div>
+      <div class="info-item">Diprioritaskan magang Minimal 3 Bulan.</div>
+      <div class="info-item">Jam Masuk magang Pkl 07:45 - 17:00.</div>
+      <div class="info-item">Mengikuti kegiatan olahraga yang sudah ditentukan oleh pihak BPJS Ketenagakerjaan.</div>
+      <div class="info-item">Diwajibkan membawa KTP guna mengikuti kepesertaan Bukan Penerima Upah (BPU) BPJS Ketenagakerjaan Yogyakarta dengan iuran Rp.16.800,- (JKK-JKM).</div>
+      <div class="info-item">Diwajibkan Memakai Jas Almamater dan laptop sewaktu diterima magang.</div>
+      <div class="info-item">Mengenal Program BPJS Ketenagakerjaan dan bersedia menginformasikan kepada rekan, saudara/ Tetangga.</div>
 
-  <div class="card shadow-sm">
-    <div class="card-body">
-      <div class="table-responsive">
-        <table class="table table-bordered table-striped align-middle">
-          <thead class="table-primary text-center">
-            <tr>
-              <th>Nama</th>
-              <th>Email</th>
-              <th>Universitas</th>
-              <th>Jurusan</th>
-              <th>No HP</th>
-              <th>Durasi</th>
-              <th>CV</th>
-              <th>Rekomendasi</th>
-              <th>Status</th>
-              <th>Tanggal Daftar</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php if ($peserta): ?>
-              <?php foreach ($peserta as $row): ?>
-                <tr>
-                  <td><?= htmlspecialchars($row['nama']) ?></td>
-                  <td><?= htmlspecialchars($row['email']) ?></td>
-                  <td><?= htmlspecialchars($row['universitas'] ?? '-') ?></td>
-                  <td><?= htmlspecialchars($row['jurusan'] ?? '-') ?></td>
-                  <td><?= htmlspecialchars($row['no_hp'] ?? '-') ?></td>
-                  <td><?= htmlspecialchars($row['durasi'] ?? '-') ?></td>
+      <!-- Perbaikan bagian link agar tampil di baris baru -->
+      <div class="info-item">
+        Membuat Video/Instagram/Tiktok tentang Program BPJS Ketenagakerjaan dan di Upload di link berikut 
+        Paling Lambat 1 Minggu setelah pendaftaran Pkl 12:00:<br>
+        <a href="https://drive.google.com/drive/u/2/folders/1ydMuBXbj78XXuuZo66eGlPNQ_FlQRn1k" 
+           target="_blank" 
+           rel="noopener" 
+           style="color:#1979ff; text-decoration:underline;">
+          https://drive.google.com/drive/u/2/folders/1ydMuBXbj78XXuuZo66eGlPNQ_FlQRn1k
+        </a>
+      </div>
 
-                  <!-- CV -->
-                  <td class="text-center">
-                    <?php if (!empty($row['cv'])): ?>
-                      <a href="uploads/<?= htmlspecialchars($row['cv']) ?>" target="_blank" class="btn btn-sm btn-outline-primary">Lihat</a>
-                    <?php else: ?>
-                      <span class="text-muted">-</span>
-                    <?php endif; ?>
-                  </td>
-
-                  <!-- Rekomendasi -->
-                  <td class="text-center">
-                    <?php if (!empty($row['rekomendasi'])): ?>
-                      <a href="uploads/<?= htmlspecialchars($row['rekomendasi']) ?>" target="_blank" class="btn btn-sm btn-outline-primary">Lihat</a>
-                    <?php else: ?>
-                      <span class="text-muted">-</span>
-                    <?php endif; ?>
-                  </td>
-
-                  <!-- Status -->
-                  <td class="text-center">
-                    <?php if ($row['status'] == 'Menunggu'): ?>
-                      <form action="update_status.php" method="POST" style="display:inline;">
-                        <input type="hidden" name="id" value="<?= $row['id'] ?>">
-                        <input type="hidden" name="status" value="Diterima">
-                        <button type="submit" class="btn btn-success btn-sm">Terima</button>
-                      </form>
-                      <form action="update_status.php" method="POST" style="display:inline;">
-                        <input type="hidden" name="id" value="<?= $row['id'] ?>">
-                        <input type="hidden" name="status" value="Ditolak">
-                        <button type="submit" class="btn btn-danger btn-sm">Tolak</button>
-                      </form>
-                    <?php else: ?>
-                      <span class="badge <?= $row['status']=='Diterima'?'bg-success':'bg-danger' ?>">
-                        <?= htmlspecialchars($row['status']) ?>
-                      </span>
-                    <?php endif; ?>
-                  </td>
-
-                  <!-- Tanggal -->
-                  <td><?= date('d M Y, H:i', strtotime($row['tanggal_daftar'])) ?></td>
-                </tr>
-              <?php endforeach; ?>
-            <?php else: ?>
-              <tr><td colspan="10" class="text-center text-muted py-3">Belum ada peserta yang mendaftar.</td></tr>
-            <?php endif; ?>
-          </tbody>
-        </table>
+      <div class="info-item">
+        Jika magang tidak diterima di Cabang Induk bersedia ditempatkan di KCP dengan Alamat berikut :
+        Kacab Yogya : Jl. Urip Sumoharjo No 106 Yogyakarta, KCP Sleman, KCP Bantul, KCP Kulon Progo, dan KCP Gunung Kidul.
       </div>
     </div>
   </div>
-</div>
+</section>
 
+    <section id="kontak" class="section">
+      <div class="container">
+        <h2>Kontak</h2>
+        <div class="grid two">
+          <div class="card"><h3>Hubungi</h3> 
+         <div class="card"><h3>Ardan : 082134508855</h3></div>
+         <div class="card"><h3>Ibu Ida : 08159489330</h3></div>
+         <div class="card"><h3>Ibu Rosita : 081229761212</h3></div>
+         <div class="card"><h3>Bapak Jerry: 081222723923</h3></div>
+         <div class="card"><h3>Ibu Eta : 081779232928</h3></div>
+        </div>
+      </div>
+    </section>
+
+<section id="alamat" class="section">
+  <div class="container">
+    <h2>Alamat</h2>
+
+    <!-- Bungkus semua card dalam grid -->
+    <div class="grid two">
+
+      <!-- Alamat Cabang Induk -->
+      <div class="card">
+        <h3>Cabang Induk Yogyakarta</h3>
+        <p class="muted">
+          Jl. Urip Sumoharjo No.106, Klitren, Kec. Gondokusuman, Kota Yogyakarta, Daerah Istimewa Yogyakarta 55222
+        </p>
+        <div class="row">
+          <a class="btn ghost" href="https://maps.app.goo.gl/zxp1KBfZ1Fn8maFU9" target="_blank" rel="noopener">
+            📍 Buka di Google Maps
+          </a>
+        </div>
+      </div>
+
+      <!-- Alamat KCP Sleman -->
+      <div class="card">
+        <h3>KCP Sleman</h3>
+        <p class="muted">
+          Ruko Tridadi Square No. 3 & 4, Jl. Magelang, Tridadi, Kec. Sleman, Daerah Istimewa Yogyakarta 55285
+        </p>
+        <div class="row">
+          <a class="btn ghost" href="https://maps.app.goo.gl/DSQz5def4HaifLX97" target="_blank" rel="noopener">
+            📍 Buka di Google Maps
+          </a>
+        </div>
+      </div>
+
+      <!-- Alamat KCP Bantul -->
+      <div class="card">
+        <h3>KCP Bantul</h3>
+        <p class="muted">
+          Jl. Ringroad Selatan No.Rt 07, Gonjen, Tamantirto, Kec. Kasihan, Kabupaten Bantul, Daerah Istimewa Yogyakarta 55184
+        </p>
+        <div class="row">
+          <a class="btn ghost" href="https://maps.app.goo.gl/KNraX8KHDd8d7chCA" target="_blank" rel="noopener">
+            📍 Buka di Google Maps
+          </a>
+        </div>
+      </div>
+
+      <!-- Alamat KCP Kulon Progo -->
+      <div class="card">
+        <h3>KCP Kulon Progo</h3>
+        <p class="muted">
+          45X7+9J3, Terbah, Pengasih, Kec. Pengasih, Kabupaten Kulon Progo, Daerah Istimewa Yogyakarta 55652
+        </p>
+        <div class="row">
+          <a class="btn ghost" href="https://maps.app.goo.gl/j89oxdQRqGwjH4Du5" target="_blank" rel="noopener">
+            📍 Buka di Google Maps
+          </a>
+        </div>
+      </div>
+
+      <!-- Alamat KCP Gunungkidul -->
+      <div class="card">
+        <h3>KCP Gunungkidul</h3>
+        <p class="muted">
+          JBank Btn (Kepek), Jl. KH Agus Salim No.97B, Ledoksari, Kepek, Kec. Wonosari, Kabupaten Gunungkidul, Daerah Istimewa Yogyakarta 55813
+        </p>
+        <div class="row">
+          <a class="btn ghost" href="https://maps.app.goo.gl/giN4rEP55qggMAbj6" target="_blank" rel="noopener">
+            📍 Buka di Google Maps
+          </a>
+        </div>
+      </div>
+
+    </div> <!-- Tutup grid -->
+  </div> <!-- Tutup container -->
+</section>
+
+
+
+    <!-- Placeholder agar menu lengkap -->
+<section id="Magang" class="section">
+  <div class="container">
+    <h2>Magang</h2>
+    
+    <div class="card">
+      <p class="muted">
+        <a href="index.php" style="text-decoration: none; color: #1979ff;">
+          Klik untuk Mendaftar
+        </a>
+      </p>
+    </div>
+    
+  </div>
+</section>
+
+  <footer class="site-footer">
+    <div class="container foot">
+      <small>© 2025 BPJS Ketenagakerjaan • Kantor Cabang Yogyakarta</small>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const hamb = document.getElementById('hamb');
+    const nav = document.getElementById('mainnav');
+    hamb?.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      hamb.setAttribute('aria-expanded', open);
+    });
+  </script>
 </body>
 </html>
